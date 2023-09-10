@@ -1,4 +1,6 @@
+import Tabs from '../components/organisms/Tabs'
+
 const Top = () => {
-  return <div>Top</div>
+  return <Tabs />
 }
 export default Top
