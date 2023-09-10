@@ -18,9 +18,9 @@ const Nav = ({ isShowMenu }) => {
   return (
     <StyledNav $isShowMenu={isShowMenu}>
       <NavItem name="Top" path="/" />
-      <NavItem name="Profile" path="profile" />
-      <NavItem name="Issue" path="issue" />
-      <NavItem name="Pull Request" path="pull-request" />
+      <NavItem name="Profile" path="/profile" />
+      <NavItem name="Issue" path="/issue" />
+      <NavItem name="Pull Request" path="/pull-request" />
     </StyledNav>
   )
 }

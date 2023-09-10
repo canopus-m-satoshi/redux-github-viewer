@@ -14,8 +14,8 @@ const StyledList = styled.nav`
 const Gnav = () => {
   return (
     <StyledList>
-      <GnavItem name="Issue" path="issue" />
-      <GnavItem name="Pull Request" path="pull-request" />
+      <GnavItem name="Issue" path="/issue" />
+      <GnavItem name="Pull Request" path="/pull-request" />
     </StyledList>
   )
 }
