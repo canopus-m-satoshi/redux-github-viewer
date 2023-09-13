@@ -1,5 +1,6 @@
 import Tab from '../atoms/Tab'
 import TabPanel from '../atoms/TabPanel'
+import Title from '../atoms/Title'
 import IssueBody from '../molecules/IssueBody'
 import IssueHeader from '../molecules/IssueHeader'
 import TabList from '../molecules/TabList'
@@ -19,7 +20,7 @@ const Tabs = () => {
           <IssueBody />
         </TabPanel>
         <TabPanel>
-          <p>PullRequest</p>
+          <Title title="PullRequest" centering />
         </TabPanel>
       </TabPanels>
     </>
