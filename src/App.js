@@ -5,19 +5,34 @@ import Issue from './pages/Issue'
 import PullRequest from './pages/PullRequest'
 import Header from './components/organisms/Header'
 import Container from './container/Container'
+import { styled } from 'styled-components'
+
+const Wrapper = styled.div`
+  *,
+  ::before,
+  ::after {
+    box-sizing: border-box;
+  }
+
+  a {
+    text-decoration: none;
+  }
+`
 
 function App() {
   return (
     <div className="App">
-      <Header />
-      <Container>
-        <Routes>
-          <Route path="/" element={<Top />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/issue" element={<Issue />} />
-          <Route path="/pull-request" element={<PullRequest />} />
-        </Routes>
-      </Container>
+      <Wrapper>
+        <Header />
+        <Container>
+          <Routes>
+            <Route path="/" element={<Top />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/issue" element={<Issue />} />
+            <Route path="/pull-request" element={<PullRequest />} />
+          </Routes>
+        </Container>
+      </Wrapper>
     </div>
   )
 }

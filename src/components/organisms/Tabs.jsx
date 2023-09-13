@@ -1,5 +1,7 @@
 import Tab from '../atoms/Tab'
 import TabPanel from '../atoms/TabPanel'
+import IssueBody from '../molecules/IssueBody'
+import IssueHeader from '../molecules/IssueHeader'
 import TabList from '../molecules/TabList'
 import TabPanels from '../molecules/TabPanels'
 
@@ -7,20 +9,17 @@ const Tabs = () => {
   return (
     <>
       <TabList>
-        <Tab>One</Tab>
-        <Tab>Two</Tab>
-        <Tab>Three</Tab>
+        <Tab>Issue</Tab>
+        <Tab>Pull Request</Tab>
       </TabList>
 
       <TabPanels>
         <TabPanel>
-          <p>one!</p>
+          <IssueHeader />
+          <IssueBody />
         </TabPanel>
         <TabPanel>
-          <p>two!</p>
-        </TabPanel>
-        <TabPanel>
-          <p>three!</p>
+          <p>PullRequest</p>
         </TabPanel>
       </TabPanels>
     </>
