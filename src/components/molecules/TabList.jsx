@@ -1,4 +1,10 @@
+import styled from 'styled-components'
+
+const StyledTabList = styled.ul`
+  display: flex;
+`
+
 const TabList = ({ children }) => {
-  return <div>{children}</div>
+  return <StyledTabList>{children}</StyledTabList>
 }
 export default TabList
