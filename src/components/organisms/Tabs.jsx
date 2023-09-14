@@ -1,3 +1,5 @@
+import { useSelector, useDispatch } from 'react-redux'
+
 import Tab from '../atoms/Tab'
 import TabPanel from '../atoms/TabPanel'
 import Title from '../atoms/Title'
@@ -13,7 +15,6 @@ const Tabs = () => {
         <Tab>Issue</Tab>
         <Tab>Pull Request</Tab>
       </TabList>
-
       <TabPanels>
         <TabPanel>
           <IssueHeader />
