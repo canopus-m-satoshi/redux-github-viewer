@@ -4,6 +4,7 @@ import { styled } from 'styled-components'
 const StyledTitle = styled.h1`
   font-size: 2rem;
   font-weight: bold;
+  margin-block: 0;
   cursor: pointer;
 `
 
