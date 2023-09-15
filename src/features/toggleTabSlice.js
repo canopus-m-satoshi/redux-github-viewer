@@ -8,8 +8,9 @@ export const toggleTabSlice = createSlice({
   name: 'toggleTab',
   initialState,
   reducers: {
-    toggleTab: (state) => {
-      state.isShow = !state
+    toggleTab: (state, action) => {
+      // state.isShow = action.payload
+      state.isShow = !state.isShow
     },
   },
 })

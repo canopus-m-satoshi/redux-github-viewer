@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
-import { toggleTabSlice } from '../../features/toggleTabSlice'
+import { toggleTab } from '../../features/toggleTabSlice'
 
 const StyledTab = styled.li`
   font-size: 1.2rem;
@@ -26,7 +26,7 @@ const Tab = ({ children }) => {
   const dispatch = useDispatch()
 
   const hondleToggle = () => {
-    dispatch(toggleTabSlice(toggleTabState))
+    dispatch(toggleTab(toggleTabState))
   }
 
   return (
