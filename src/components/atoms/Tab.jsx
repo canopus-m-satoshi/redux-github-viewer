@@ -1,16 +1,17 @@
-import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
-import { toggleTab } from '../../features/toggleTabSlice'
 
 const StyledTab = styled.li`
   font-size: 1.2rem;
   width: 100%;
   text-align: center;
+  list-style-type: none;
   border-radius: 6px 6px 0px 0px;
   border-top: 1px solid #e1e4e8;
   border-right: 1px solid #e1e4e8;
   border-left: 1px solid #e1e4e8;
-  list-style-type: none;
+  border-bottom: ${(props) =>
+    props.$handleTabClick === '1' ? '1px solid' : 'none'};
+  // 上記の部分を修正し、選択されたタブにボーダーボトムを追加
 
   span {
     cursor: pointer;
@@ -21,16 +22,12 @@ const StyledTab = styled.li`
   }
 `
 
-const Tab = ({ children }) => {
-  const toggleTabState = useSelector((state) => state.toggleTab.isShow)
-  const dispatch = useDispatch()
-
-  const hondleToggle = () => {
-    dispatch(toggleTab(toggleTabState))
-  }
-
+const Tab = ({ children, handleTabClick, SelectedTab, onClick }) => {
   return (
-    <StyledTab onClick={hondleToggle}>
+    <StyledTab
+      onClick={onClick}
+      $handleTabClick={handleTabClick}
+      $SelectedTab={SelectedTab}>
       <span>{children}</span>
     </StyledTab>
   )
