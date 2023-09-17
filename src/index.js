@@ -3,15 +3,25 @@ import ReactDOM from 'react-dom/client'
 import App from './App'
 import reportWebVitals from './reportWebVitals'
 import { BrowserRouter } from 'react-router-dom'
-import { Reset } from 'styled-reset'
 import { Provider } from 'react-redux'
 import { store } from './store'
+import { createGlobalStyle } from 'styled-components'
+
+const GlobalStyle = createGlobalStyle`
+html {
+    font-family: Lato, "Lucida Grande", "Lucida Sans Unicode", Tahoma, sans-serif;
+    line-height: 1.5;
+    font-size: 14px;
+    padding: 0px;
+    margin: 0px;
+}
+`
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
   <React.StrictMode>
+    <GlobalStyle />
     <BrowserRouter>
-      {/* <Reset /> */}
       <Provider store={store}>
         <App />
       </Provider>
