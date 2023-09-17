@@ -14,7 +14,6 @@ const StyleBasedButton = styled.button`
   outline: none;
   appearance: none;
   background: #42c360;
-  border-bottom: 2px solid #28a745;
 `
 
 const StyledButtonPrimary = styled(StyleBasedButton)`
@@ -27,11 +26,18 @@ const StyledButtonDelete = styled(StyleBasedButton)`
   border-bottom: 2px solid #af1c2a;
 `
 
+const StyledButtonTransparent = styled(StyleBasedButton)`
+  background: transparent;
+  border: none;
+  color: #0366d6;
+`
+
 // 全ボタンコンポーネント
 const buttonStyleLists = {
   default: StyleBasedButton,
   primary: StyledButtonPrimary,
   delete: StyledButtonDelete,
+  transparent: StyledButtonTransparent,
 }
 
 const Button = ({ text, styleType, onClick }) => {

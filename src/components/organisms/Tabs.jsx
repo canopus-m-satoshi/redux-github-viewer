@@ -6,13 +6,25 @@ import IssueBody from '../molecules/IssueBody'
 import IssueHeader from '../molecules/IssueHeader'
 import TabList from '../molecules/TabList'
 import TabPanels from '../molecules/TabPanels'
+import ModalWrapper from './ModalWrapper'
 
 const Tabs = () => {
   const [SelectedTab, setSelectedTab] = useState(Tab.length)
+  const [modalIsOpen, setIsOpen] = useState(false)
 
   const handleTabSelect = (index) => {
     setSelectedTab(index)
   }
+
+  function openModal() {
+    setIsOpen(true)
+  }
+
+  function closeModal() {
+    setIsOpen(false)
+  }
+
+  function updateIssue() {}
 
   return (
     <>
@@ -33,6 +45,13 @@ const Tabs = () => {
           <Title title="PullRequest" centering />
         </TabPanel>
       </TabPanels>
+      <button onClick={openModal}>Open Modal</button>
+      <ModalWrapper
+        modalIsOpen={modalIsOpen}
+        openModal={openModal}
+        closeModal={closeModal}
+        updateIssue={updateIssue}
+      />
     </>
   )
 }

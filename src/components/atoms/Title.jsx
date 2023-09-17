@@ -1,6 +1,7 @@
 import { styled } from 'styled-components'
 
 const StyledTitle = styled.h1`
+  font-size: 21px;
   place-items: center;
   place-content: center;
 
