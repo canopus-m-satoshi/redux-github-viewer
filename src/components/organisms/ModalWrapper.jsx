@@ -1,8 +1,11 @@
-import { useState } from 'react'
 import Modal from 'react-modal'
-import Title from '../atoms/Title'
+import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
+
+import Title from '../atoms/Title'
 import Button from '../atoms/Button'
+
+import { closeModal } from '../../features/modal/modalSlice'
 
 Modal.setAppElement('#root')
 
@@ -75,12 +78,15 @@ const StyledButtonContainer = styled.div`
   }
 `
 
-const ModalWrapper = ({ modalIsOpen, closeModal, updateIssue }) => {
+const ModalWrapper = () => {
+  const modal = useSelector((state) => state.modal)
+  const isOpen = modal.show
+  const dispatch = useDispatch()
+
   return (
-    <StyledModal isOpen={modalIsOpen} contentLabel="Add Issue Modal">
+    <StyledModal isOpen={isOpen} contentLabel="Add Issue Modal">
       <StyledContainer>
         <Title title="Issueを追加" />
-
         <StyledFormContainer>
           <StyledForm>
             <StyledFormItem>
@@ -102,10 +108,13 @@ const ModalWrapper = ({ modalIsOpen, closeModal, updateIssue }) => {
             </StyledFormItem>
           </StyledForm>
         </StyledFormContainer>
-
         <StyledButtonContainer>
-          <Button text="更新" onClick={updateIssue} />
-          <Button text="閉じる" styleType="transparent" onClick={closeModal} />
+          <Button text="更新" />
+          <Button
+            text="閉じる"
+            styleType="transparent"
+            onClick={() => dispatch(closeModal())}
+          />
         </StyledButtonContainer>
       </StyledContainer>
     </StyledModal>

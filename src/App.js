@@ -6,6 +6,7 @@ import PullRequest from './pages/PullRequest'
 import Header from './components/organisms/Header'
 import Container from './container/Container'
 import { styled } from 'styled-components'
+import ModalWrapper from './components/organisms/ModalWrapper'
 
 const Wrapper = styled.div`
   *,
@@ -32,6 +33,7 @@ function App() {
             <Route path="/pull-request" element={<PullRequest />} />
           </Routes>
         </Container>
+        <ModalWrapper />
       </Wrapper>
     </div>
   )

@@ -1,4 +1,6 @@
 import { useState } from 'react'
+import { useDispatch } from 'react-redux'
+
 import Tab from '../atoms/Tab'
 import TabPanel from '../atoms/TabPanel'
 import Title from '../atoms/Title'
@@ -6,25 +8,16 @@ import IssueBody from '../molecules/IssueBody'
 import IssueHeader from '../molecules/IssueHeader'
 import TabList from '../molecules/TabList'
 import TabPanels from '../molecules/TabPanels'
-import ModalWrapper from './ModalWrapper'
+
+import { showModal } from '../../features/modal/modalSlice'
 
 const Tabs = () => {
   const [SelectedTab, setSelectedTab] = useState(Tab.length)
-  const [modalIsOpen, setIsOpen] = useState(false)
+  const dispatch = useDispatch()
 
   const handleTabSelect = (index) => {
     setSelectedTab(index)
   }
-
-  function openModal() {
-    setIsOpen(true)
-  }
-
-  function closeModal() {
-    setIsOpen(false)
-  }
-
-  function updateIssue() {}
 
   return (
     <>
@@ -40,18 +33,12 @@ const Tabs = () => {
         <TabPanel SelectedTab={SelectedTab === 1}>
           <IssueHeader />
           <IssueBody />
+          <button onClick={() => dispatch(showModal())}>Open Modal</button>
         </TabPanel>
         <TabPanel SelectedTab={SelectedTab === 2}>
           <Title title="PullRequest" centering />
         </TabPanel>
       </TabPanels>
-      <button onClick={openModal}>Open Modal</button>
-      <ModalWrapper
-        modalIsOpen={modalIsOpen}
-        openModal={openModal}
-        closeModal={closeModal}
-        updateIssue={updateIssue}
-      />
     </>
   )
 }
