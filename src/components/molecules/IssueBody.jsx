@@ -1,6 +1,8 @@
 import { styled } from 'styled-components'
 
 import data from '../../data.json'
+import { useDispatch } from 'react-redux'
+import { show } from '../../features/ui/uiSlice'
 
 const StyledTableContainer = styled.div`
   /* overflow: scroll; */
@@ -47,6 +49,8 @@ const StyledTableTd = styled.td`
 `
 
 const IssueBody = () => {
+  const dispatch = useDispatch()
+
   return (
     <StyledTableContainer>
       <StyledTable>
@@ -58,19 +62,17 @@ const IssueBody = () => {
             <StyledTableTh></StyledTableTh>
             <StyledTableTh>ステータス</StyledTableTh>
             <StyledTableTh>作成者</StyledTableTh>
-            <StyledTableTh>作成日付</StyledTableTh>
+            <StyledTableTh>s作成日付</StyledTableTh>
             <StyledTableTh>更新日付</StyledTableTh>
           </StyledTableTr>
         </thead>
         <tbody>
           {data.map((data) => (
-            <StyledTableTr key={data.issueID}>
+            <StyledTableTr key={data.issueID} onClick={() => dispatch(show())}>
               <StyledTableTd>
                 <input type="checkbox" />
               </StyledTableTd>
-              <StyledTableTd className="longCdatal">
-                {data.description}
-              </StyledTableTd>
+              <StyledTableTd className="longCdatal">{data.title}</StyledTableTd>
               <StyledTableTd>{data.status}</StyledTableTd>
               <StyledTableTd>{data.author}</StyledTableTd>
               <StyledTableTd>{data.createdDate}</StyledTableTd>

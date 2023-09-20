@@ -1,10 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit'
 import toggleTabReducer from './features/toggleTabSlice'
-import modalReducer from './features/modal/modalSlice'
+import uiReducer from './features/ui/uiSlice'
 
 export const store = configureStore({
   reducer: {
     toggleTab: toggleTabReducer,
-    modal: modalReducer,
+    ui: uiReducer,
   },
 })

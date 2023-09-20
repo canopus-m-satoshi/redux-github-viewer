@@ -9,8 +9,6 @@ import IssueHeader from '../molecules/IssueHeader'
 import TabList from '../molecules/TabList'
 import TabPanels from '../molecules/TabPanels'
 
-import { showModal } from '../../features/modal/modalSlice'
-
 const Tabs = () => {
   const [SelectedTab, setSelectedTab] = useState(Tab.length)
   const dispatch = useDispatch()
@@ -33,7 +31,6 @@ const Tabs = () => {
         <TabPanel SelectedTab={SelectedTab === 1}>
           <IssueHeader />
           <IssueBody />
-          <button onClick={() => dispatch(showModal())}>Open Modal</button>
         </TabPanel>
         <TabPanel SelectedTab={SelectedTab === 2}>
           <Title title="PullRequest" centering />

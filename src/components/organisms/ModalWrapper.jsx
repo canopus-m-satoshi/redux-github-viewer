@@ -5,7 +5,7 @@ import styled from 'styled-components'
 import Title from '../atoms/Title'
 import Button from '../atoms/Button'
 
-import { closeModal } from '../../features/modal/modalSlice'
+import { show } from '../../features/ui/uiSlice'
 
 Modal.setAppElement('#root')
 
@@ -79,8 +79,9 @@ const StyledButtonContainer = styled.div`
 `
 
 const ModalWrapper = () => {
-  const modal = useSelector((state) => state.modal)
-  const isOpen = modal.show
+  // const isOpen = useSelector((state) => state.modal.show) 値は取得できるがmodal反応せず
+  const isOpen = useSelector((state) => state.ui.modal.show)
+
   const dispatch = useDispatch()
 
   return (
@@ -113,7 +114,7 @@ const ModalWrapper = () => {
           <Button
             text="閉じる"
             styleType="transparent"
-            onClick={() => dispatch(closeModal())}
+            onClick={() => dispatch(show())}
           />
         </StyledButtonContainer>
       </StyledContainer>
