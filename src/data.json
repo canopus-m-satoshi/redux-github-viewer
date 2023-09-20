@@ -1,7 +1,8 @@
 [
   {
     "issueID": 1,
-    "description": "A bug in Top Page",
+    "title": "A bug in Top Page",
+    "description": " Lorem ipsum dolor sit amet consectetur adipisicing elit. At ratione accusantium id nulla, quod ad? Molestiae magnam quos exercitationem alias expedita rerum dolorem repudiandae quam unde, minus aspernatur voluptatem tenetur?",
     "status": "Open",
     "author": "",
     "createdDate": "09-17-2023",
@@ -9,7 +10,8 @@
   },
   {
     "issueID": 2,
-    "description": "A problem of performance in Top Page",
+    "title": "A problem of performance in Top Page",
+    "description": "Molestiae magnam quos exercitationem alias expedita rerum dolorem repudiandae quam unde, minus aspernatur voluptatem tenetur?",
     "status": "Open",
     "author": "",
     "createdDate": "09-17-2023",
@@ -17,7 +19,8 @@
   },
   {
     "issueID": 3,
-    "description": "fix layout",
+    "title": "fix layout",
+    "description": "Fiexd Layout",
     "status": "Close",
     "author": "",
     "createdDate": "09-17-2023",
