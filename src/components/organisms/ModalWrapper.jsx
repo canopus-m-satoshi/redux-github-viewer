@@ -5,7 +5,7 @@ import styled from 'styled-components'
 import Title from '../atoms/Title'
 import Button from '../atoms/Button'
 
-import { show } from '../../features/ui/uiSlice'
+import { show, stack } from '../../features/ui/uiSlice'
 
 Modal.setAppElement('#root')
 
@@ -82,7 +82,25 @@ const ModalWrapper = () => {
   // const isOpen = useSelector((state) => state.modal.show) 値は取得できるがmodal反応せず
   const isOpen = useSelector((state) => state.ui.modal.show)
 
+  const { title, status, description } = useSelector(
+    (state) => state.ui.modal.stack,
+  )
+
   const dispatch = useDispatch()
+
+  const handleOnChange = () => {}
+
+  const handleOnClose = () => {
+    dispatch(show())
+    dispatch(
+      stack({
+        id: 0,
+        title: '',
+        status: 0,
+        description: '',
+      }),
+    )
+  }
 
   return (
     <StyledModal isOpen={isOpen} contentLabel="Add Issue Modal">
@@ -92,19 +110,19 @@ const ModalWrapper = () => {
           <StyledForm>
             <StyledFormItem>
               <label>タイトル</label>
-              <input id="title" type="text" />
+              <input type="text" value={title} onChange={handleOnChange} />
             </StyledFormItem>
             <StyledFormItem>
               <label>説明</label>
               <textarea
                 placeholder="説明を入力してください"
-                defaultValue="Lorem ipsum dolor sit amet, consectetur adipiscing elit."></textarea>
+                defaultValue={description}></textarea>
             </StyledFormItem>
             <StyledFormItem>
               <label>ステータス</label>
-              <select>
-                <option value="0">Open</option>
-                <option value="1">Close</option>
+              <select defaultValue={status === 0 ? 0 : 1}>
+                <option value={0}>Open</option>
+                <option value={1}>Close</option>
               </select>
             </StyledFormItem>
           </StyledForm>
@@ -114,7 +132,7 @@ const ModalWrapper = () => {
           <Button
             text="閉じる"
             styleType="transparent"
-            onClick={() => dispatch(show())}
+            onClick={handleOnClose}
           />
         </StyledButtonContainer>
       </StyledContainer>
