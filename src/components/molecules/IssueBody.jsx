@@ -62,7 +62,7 @@ const IssueBody = () => {
             <StyledTableTh></StyledTableTh>
             <StyledTableTh>ステータス</StyledTableTh>
             <StyledTableTh>作成者</StyledTableTh>
-            <StyledTableTh>s作成日付</StyledTableTh>
+            <StyledTableTh>作成日付</StyledTableTh>
             <StyledTableTh>更新日付</StyledTableTh>
           </StyledTableTr>
         </thead>
