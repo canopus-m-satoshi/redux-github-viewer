@@ -1,7 +1,6 @@
 import { styled } from 'styled-components'
 
-import data from '../../data.json'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { show, stack } from '../../features/ui/uiSlice'
 
 const StyledTableContainer = styled.div`
@@ -50,6 +49,8 @@ const StyledTableTd = styled.td`
 
 const IssueBody = () => {
   const dispatch = useDispatch()
+
+  const data = useSelector((state) => state.issue.data)
 
   const handleModalShow = (data) => {
     dispatch(
