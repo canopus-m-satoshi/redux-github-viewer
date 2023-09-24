@@ -40,9 +40,10 @@ export const issueSlice = createSlice({
   reducers: {
     add: (state) => {},
     update: (state) => {},
-    deleteIssue: (state) => {},
+    remove: (state) => {},
   },
 })
 
-export const { add, update, deleteIssue } = issueSlice.actions
+export const { add, update, remove } = issueSlice.actions
+
 export default issueSlice.reducer
