@@ -6,6 +6,8 @@ import Title from '../atoms/Title'
 import Button from '../atoms/Button'
 
 import { show, stack } from '../../features/ui/uiSlice'
+import { add, update } from '../../features/issue/issueSlice'
+import { useState } from 'react'
 
 Modal.setAppElement('#root')
 
@@ -79,12 +81,14 @@ const StyledButtonContainer = styled.div`
 `
 
 const ModalWrapper = () => {
-  // const isOpen = useSelector((state) => state.modal.show) 値は取得できるがmodal反応せず
   const isOpen = useSelector((state) => state.ui.modal.show)
-
-  const { title, status, description } = useSelector(
+  const { id, title, status, description } = useSelector(
     (state) => state.ui.modal.stack,
   )
+
+  const [modalTitle, setModalTitle] = useState(title)
+  const [modalDescription, setModalDescription] = useState('')
+  const [modalStatus, setModalStatus] = useState('')
 
   const dispatch = useDispatch()
 
@@ -92,35 +96,56 @@ const ModalWrapper = () => {
 
   const handleOnClose = () => {
     dispatch(show())
+    dispatch(stack({}))
+  }
+
+  const onChangeTitle = (e) => {
+    setModalTitle(e.target.value)
+  }
+
+  const onChangeTextarea = (e) => {
+    setModalDescription(e.target.value)
+  }
+
+  const onChangeStatus = (e) => {
+    setModalStatus(e.target.value)
+  }
+
+  const handleOnUpdate = () => {
     dispatch(
-      stack({
-        id: 0,
-        title: '',
-        status: 0,
-        description: '',
+      update({
+        id: id,
+        title: modalTitle,
+        status: modalStatus,
+        description: modalDescription,
       }),
     )
+
+    dispatch(show())
   }
 
   return (
-    <StyledModal isOpen={isOpen} contentLabel="Add Issue Modal">
+    <StyledModal isOpen={isOpen} contentLabel="Add Issue Modal" key={id}>
       <StyledContainer>
         <Title title="Issueを追加" />
         <StyledFormContainer>
           <StyledForm>
             <StyledFormItem>
               <label>タイトル</label>
-              <input type="text" value={title} onChange={handleOnChange} />
+              <input type="text" value={modalTitle} onChange={onChangeTitle} />
             </StyledFormItem>
             <StyledFormItem>
               <label>説明</label>
               <textarea
                 placeholder="説明を入力してください"
-                defaultValue={description}></textarea>
+                defaultValue={modalDescription}
+                onChange={onChangeTextarea}></textarea>
             </StyledFormItem>
             <StyledFormItem>
               <label>ステータス</label>
-              <select defaultValue={status === 0 ? 0 : 1}>
+              <select
+                defaultValue={status === 0 ? 0 : 1}
+                onChange={onChangeStatus}>
                 <option value={0}>Open</option>
                 <option value={1}>Close</option>
               </select>
@@ -128,7 +153,7 @@ const ModalWrapper = () => {
           </StyledForm>
         </StyledFormContainer>
         <StyledButtonContainer>
-          <Button text="更新" />
+          <Button text="更新" onClick={handleOnUpdate} />
           <Button
             text="閉じる"
             styleType="transparent"
