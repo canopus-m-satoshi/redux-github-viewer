@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { format } from 'date-fns'
 
 const data = [
   {
@@ -40,7 +41,25 @@ export const issueSlice = createSlice({
   name: 'issue',
   initialState,
   reducers: {
-    update: (state, action) => {},
+    update: (state, action) => {
+      const index = state.data.findIndex(
+        (item) => item.id === action.payload.id,
+      )
+
+      if (index !== -1) {
+        const today = format(new Date(), 'MM-dd-yyyy')
+        if (
+          state.data[index].title !== action.payload.title ||
+          state.data[index].status !== action.payload.status ||
+          state.data[index].description !== action.payload.description
+        ) {
+          state.data[index].title = action.payload.title
+          state.data[index].status = action.payload.status
+          state.data[index].description = action.payload.description
+          state.data[index].updatedDate = today
+        }
+      }
+    },
     remove: (state) => {},
   },
 })

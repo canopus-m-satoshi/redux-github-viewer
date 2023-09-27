@@ -6,8 +6,8 @@ import Title from '../atoms/Title'
 import Button from '../atoms/Button'
 
 import { show, stack } from '../../features/ui/uiSlice'
-import { add, update } from '../../features/issue/issueSlice'
-import { useState } from 'react'
+import { update } from '../../features/issue/issueSlice'
+import { useEffect, useState } from 'react'
 
 Modal.setAppElement('#root')
 
@@ -85,14 +85,17 @@ const ModalWrapper = () => {
   const { id, title, status, description } = useSelector(
     (state) => state.ui.modal.stack,
   )
+  const dispatch = useDispatch()
 
-  const [modalTitle, setModalTitle] = useState(title)
+  const [modalTitle, setModalTitle] = useState('')
   const [modalDescription, setModalDescription] = useState('')
   const [modalStatus, setModalStatus] = useState('')
 
-  const dispatch = useDispatch()
-
-  const handleOnChange = () => {}
+  useEffect(() => {
+    setModalTitle(title)
+    setModalDescription(description)
+    setModalStatus(status)
+  }, [title, description, status])
 
   const handleOnClose = () => {
     dispatch(show())
@@ -116,11 +119,10 @@ const ModalWrapper = () => {
       update({
         id: id,
         title: modalTitle,
-        status: modalStatus,
         description: modalDescription,
+        status: modalStatus,
       }),
     )
-
     dispatch(show())
   }
 
@@ -132,13 +134,17 @@ const ModalWrapper = () => {
           <StyledForm>
             <StyledFormItem>
               <label>タイトル</label>
-              <input type="text" value={modalTitle} onChange={onChangeTitle} />
+              <input
+                type="text"
+                defaultValue={title}
+                onChange={onChangeTitle}
+              />
             </StyledFormItem>
             <StyledFormItem>
               <label>説明</label>
               <textarea
                 placeholder="説明を入力してください"
-                defaultValue={modalDescription}
+                defaultValue={description}
                 onChange={onChangeTextarea}></textarea>
             </StyledFormItem>
             <StyledFormItem>
