@@ -6,7 +6,7 @@ import Title from '../atoms/Title'
 import Button from '../atoms/Button'
 
 import { show, stack } from '../../features/ui/uiSlice'
-import { update } from '../../features/issue/issueSlice'
+import { update, create } from '../../features/issue/issueSlice'
 import { useEffect, useState } from 'react'
 
 Modal.setAppElement('#root')
@@ -80,6 +80,14 @@ const StyledButtonContainer = styled.div`
   }
 `
 
+const StyledAlertText = styled.p`
+  color: #d73a49;
+  background: rgba(215, 58, 73, 0.35);
+  padding: 8px;
+  border-radius: 6px;
+  display: ${(props) => (props.$isError ? 'block' : 'none')};
+`
+
 const ModalWrapper = () => {
   const isOpen = useSelector((state) => state.ui.modal.show)
   const { id, title, status, description } = useSelector(
@@ -90,6 +98,8 @@ const ModalWrapper = () => {
   const [modalTitle, setModalTitle] = useState('')
   const [modalDescription, setModalDescription] = useState('')
   const [modalStatus, setModalStatus] = useState('')
+  const [isError, setIsError] = useState(false)
+  const [alertText, setAlertText] = useState('')
 
   useEffect(() => {
     setModalTitle(title)
@@ -112,6 +122,34 @@ const ModalWrapper = () => {
 
   const onChangeStatus = (e) => {
     setModalStatus(e.target.value)
+  }
+
+  const handleOnCreate = () => {
+    const titleLength = modalTitle
+    const descriptionLength = modalDescription
+
+    if (titleLength <= 0) {
+      setIsError(true)
+      setAlertText('タイトルを入力してください')
+      return
+    }
+
+    if (modalDescription <= 0) {
+      setIsError(true)
+      setAlertText('説明を入力してください')
+      return
+    }
+
+    setIsError(false)
+
+    dispatch(
+      create({
+        title: modalTitle,
+        description: modalDescription,
+        status: modalStatus,
+      }),
+    )
+    dispatch(show())
   }
 
   const handleOnUpdate = () => {
@@ -158,8 +196,17 @@ const ModalWrapper = () => {
             </StyledFormItem>
           </StyledForm>
         </StyledFormContainer>
+        {title === undefined || description === undefined ? (
+          <StyledAlertText $isError={isError}>{alertText}</StyledAlertText>
+        ) : (
+          ''
+        )}
         <StyledButtonContainer>
-          <Button text="更新" onClick={handleOnUpdate} />
+          {title === undefined || description === undefined ? (
+            <Button text="作成" onClick={handleOnCreate} />
+          ) : (
+            <Button text="更新" onClick={handleOnUpdate} />
+          )}
           <Button
             text="閉じる"
             styleType="transparent"
