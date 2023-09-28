@@ -87,7 +87,6 @@ const StyledAlertText = styled.p`
   border-radius: 6px;
   display: ${(props) => (props.$isError ? 'block' : 'none')};
 `
-
 const ModalWrapper = () => {
   const isOpen = useSelector((state) => state.ui.modal.show)
   const { id, title, status, description } = useSelector(
