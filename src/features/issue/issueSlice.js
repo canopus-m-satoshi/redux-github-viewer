@@ -27,7 +27,7 @@ const data = [
     description: 'Fiexd Layout',
     status: 1,
     author: '',
-    createdDate: '09-07-2023',
+
     createdDate: '09-07-2023',
     updatedDate: '09-10-2023',
   },
