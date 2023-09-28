@@ -125,16 +125,13 @@ const ModalWrapper = () => {
   }
 
   const handleOnCreate = () => {
-    const titleLength = modalTitle
-    const descriptionLength = modalDescription
-
-    if (titleLength <= 0) {
+    if (modalTitle === undefined || modalTitle.length === 0) {
       setIsError(true)
       setAlertText('タイトルを入力してください')
       return
     }
 
-    if (descriptionLength <= 0) {
+    if (modalDescription === undefined || modalDescription.length === 0) {
       setIsError(true)
       setAlertText('説明を入力してください')
       return
