@@ -33,7 +33,7 @@ const data = [
 ]
 
 const initialState = {
-  index: data.length,
+  // index: data.length,
   data: data,
 }
 
@@ -42,11 +42,10 @@ export const issueSlice = createSlice({
   initialState,
   reducers: {
     create: (state, action) => {
-      const index = state.index + 1
       const today = format(new Date(), 'MM-dd-yyyy')
 
       state.data.push({
-        id: index,
+        id: state.data.length + 1,
         status: action.payload.status,
         title: action.payload.title,
         description: action.payload.description,
