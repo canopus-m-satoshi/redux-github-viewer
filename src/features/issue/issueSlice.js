@@ -27,7 +27,7 @@ const data = [
     description: 'Fiexd Layout',
     status: 1,
     author: '',
-    createdDate: '09-7-2023',
+    createdDate: '09-07-2023',
     updatedDate: '09-10-2023',
   },
 ]
@@ -41,6 +41,18 @@ export const issueSlice = createSlice({
   name: 'issue',
   initialState,
   reducers: {
+    create: (state, action) => {
+      const index = state.index + 1
+      const today = format(new Date(), 'MM-dd-yyyy')
+
+      state.data.push({
+        id: index,
+        status: action.payload.status,
+        title: action.payload.title,
+        description: action.payload.description,
+        createdDate: today,
+      })
+    },
     update: (state, action) => {
       const index = state.data.findIndex(
         (item) => item.id === action.payload.id,
@@ -64,6 +76,6 @@ export const issueSlice = createSlice({
   },
 })
 
-export const { add, update, remove } = issueSlice.actions
+export const { create, update, remove } = issueSlice.actions
 
 export default issueSlice.reducer
