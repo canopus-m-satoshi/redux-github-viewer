@@ -124,6 +124,31 @@ const ModalWrapper = () => {
     setModalStatus(e.target.value)
   }
 
+  const handleOnCreate = () => {
+    if (modalTitle === undefined || modalTitle.length === 0) {
+      setIsError(true)
+      setAlertText('タイトルを入力してください')
+      return
+    }
+
+    if (modalDescription === undefined || modalDescription.length === 0) {
+      setIsError(true)
+      setAlertText('説明を入力してください')
+      return
+    }
+
+    setIsError(false)
+
+    dispatch(
+      create({
+        title: modalTitle,
+        description: modalDescription,
+        status: modalStatus,
+      }),
+    )
+    dispatch(show())
+  }
+
   const handleOnUpdate = () => {
     dispatch(
       update({
