@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit'
 const initialState = {
   modal: {
     show: false,
-    stack: {},
+    stack: [],
   },
 }
 
@@ -14,15 +14,12 @@ export const uiSlice = createSlice({
     show: (state) => {
       state.modal.show = !state.modal.show
     },
-    stack: (state, action) => {
-      state.modal.stack.id = action.payload.id
-      state.modal.stack.title = action.payload.title
-      state.modal.stack.status = action.payload.status
-      state.modal.stack.description = action.payload.description
+    push: (state, action) => {
+      state.modal.stack.push(action.payload)
     },
   },
 })
 
-export const { show, stack } = uiSlice.actions
+export const { show, push } = uiSlice.actions
 
 export default uiSlice.reducer
