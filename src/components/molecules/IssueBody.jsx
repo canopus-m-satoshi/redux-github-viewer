@@ -1,7 +1,8 @@
 import { styled } from 'styled-components'
 
 import { useDispatch, useSelector } from 'react-redux'
-import { show, stack } from '../../features/ui/uiSlice'
+import IssueForm from '../../components/organisms/IssueForm'
+import { show, push } from '../../features/ui/uiSlice'
 
 const StyledTableContainer = styled.div`
   /* overflow: scroll; */
@@ -54,12 +55,11 @@ const IssueBody = () => {
 
   const handleModalShow = (data) => {
     dispatch(
-      stack({
-        id: data.id,
-        title: data.title,
-        status: data.status,
-        description: data.description,
-      }),
+     push(
+       <IssueForm
+          defaultValue={data}
+        />
+       )
     )
 
     dispatch(show())

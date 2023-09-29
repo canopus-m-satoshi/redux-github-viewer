@@ -2,8 +2,9 @@ import { styled } from 'styled-components'
 import Button from '../atoms/Button'
 import HeaderTitle from '../atoms/HeaderTitle'
 import Input from '../atoms/Input'
+import IssueForm from '../organisms/IssueForm'
 import { useDispatch } from 'react-redux'
-import { show } from '../../features/ui/uiSlice'
+import { show, push } from '../../features/ui/uiSlice'
 
 const StyledHeader = styled.header`
   display: flex;
@@ -17,6 +18,11 @@ const IssueHeader = () => {
   const dispatch = useDispatch()
 
   const onAdd = () => {
+    dispatch(
+     push(
+       <IssueForm />
+       )
+    )
     dispatch(show())
   }
 
