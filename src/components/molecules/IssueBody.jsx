@@ -3,6 +3,7 @@ import { styled } from 'styled-components'
 import { useDispatch, useSelector } from 'react-redux'
 import IssueForm from '../../components/organisms/IssueForm'
 import { show, push } from '../../features/ui/uiSlice'
+import { checked } from '../../features/issue/issueSlice'
 
 const StyledTableContainer = styled.div`
   /* overflow: scroll; */
@@ -26,6 +27,7 @@ const StyledTableTr = styled.tr`
   th:first-child,
   td:first-child {
     min-width: auto;
+    white-space: nowrap;
   }
 
   th:nth-child(2),
@@ -53,10 +55,22 @@ const IssueBody = () => {
 
   const data = useSelector((state) => state.issue.data)
 
-  const handleModalShow = (data) => {
+  const handleModalShow = (e, data) => {
+    if (e.target.nodeName === 'INPUT') return
+
     dispatch(push(<IssueForm defaultValue={data} />))
 
     dispatch(show())
+  }
+
+  const handleCheckboxAll = (data) => {
+    data.forEach((data) => {
+      dispatch(checked(data))
+    })
+  }
+
+  const handleCheckbox = (data) => {
+    dispatch(checked(data))
   }
 
   return (
@@ -65,7 +79,7 @@ const IssueBody = () => {
         <thead>
           <StyledTableTr>
             <StyledTableTh>
-              <input type="checkbox" />
+              <input type="checkbox" onChange={() => handleCheckboxAll(data)} />
             </StyledTableTh>
             <StyledTableTh></StyledTableTh>
             <StyledTableTh>ステータス</StyledTableTh>
@@ -75,18 +89,24 @@ const IssueBody = () => {
           </StyledTableTr>
         </thead>
         <tbody>
-          {data.map((data) => (
-            <StyledTableTr key={data.id} onClick={() => handleModalShow(data)}>
-              <StyledTableTd>
-                <input type="checkbox" />
-              </StyledTableTd>
-              <StyledTableTd className="longCdatal">{data.title}</StyledTableTd>
-              <StyledTableTd>{data.status === 0 ? 'Open' : 'Close'}</StyledTableTd>
-              <StyledTableTd>{data.author}</StyledTableTd>
-              <StyledTableTd>{data.createdDate}</StyledTableTd>
-              <StyledTableTd>{data.updatedDate}</StyledTableTd>
+          {data.length > 0 ? (
+            data.map((data) => (
+              <StyledTableTr key={data.id} onClick={(e) => handleModalShow(e, data)}>
+                <StyledTableTd>
+                  <input type="checkbox" checked={data.isChecked} onChange={() => handleCheckbox(data)} />
+                </StyledTableTd>
+                <StyledTableTd className="longCdatal">{data.title}</StyledTableTd>
+                <StyledTableTd>{data.status === 0 ? 'Open' : 'Close'}</StyledTableTd>
+                <StyledTableTd>{data.author}</StyledTableTd>
+                <StyledTableTd>{data.createdDate}</StyledTableTd>
+                <StyledTableTd>{data.updatedDate}</StyledTableTd>
+              </StyledTableTr>
+            ))
+          ) : (
+            <StyledTableTr>
+              <StyledTableTd>データがありません</StyledTableTd>
             </StyledTableTr>
-          ))}
+          )}
         </tbody>
       </StyledTable>
     </StyledTableContainer>

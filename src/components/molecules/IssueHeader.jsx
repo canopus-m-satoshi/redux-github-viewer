@@ -5,6 +5,7 @@ import Input from '../atoms/Input'
 import IssueForm from '../organisms/IssueForm'
 import { useDispatch } from 'react-redux'
 import { show, push } from '../../features/ui/uiSlice'
+import { remove } from '../../features/issue/issueSlice'
 
 const StyledHeader = styled.header`
   display: flex;
@@ -12,14 +13,16 @@ const StyledHeader = styled.header`
   column-gap: 8px;
 `
 
-const onDelete = () => {}
-
 const IssueHeader = () => {
   const dispatch = useDispatch()
 
   const onAdd = () => {
     dispatch(push(<IssueForm />))
     dispatch(show())
+  }
+
+  const onDelete = () => {
+    dispatch(remove())
   }
 
   return (
