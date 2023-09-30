@@ -51,6 +51,7 @@ export const issueSlice = createSlice({
         title: action.payload.title,
         description: action.payload.description,
         createdDate: today,
+        updatedDate: today,
       })
     },
     update: (state, action) => {

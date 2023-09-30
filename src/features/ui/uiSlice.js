@@ -13,6 +13,11 @@ export const uiSlice = createSlice({
   reducers: {
     show: (state) => {
       state.modal.show = !state.modal.show
+
+      // modal閉じる時にスタックを空にする
+      if (state.modal.show === false) {
+        state.modal.stack = []
+      }
     },
     push: (state, action) => {
       state.modal.stack.push(action.payload)

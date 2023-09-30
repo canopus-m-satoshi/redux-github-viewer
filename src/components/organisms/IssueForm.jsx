@@ -104,13 +104,13 @@ const IssueForm = ({ defaultValue } = {}) => {
   }
 
   const handleOnCreate = () => {
-    if (modalTitle === undefined || modalTitle.length === 0) {
+    if (!modalTitle) {
       setIsError(true)
       setAlertText('タイトルを入力してください')
       return
     }
 
-    if (modalDescription === undefined || modalDescription.length === 0) {
+    if (!modalDescription) {
       setIsError(true)
       setAlertText('説明を入力してください')
       return
