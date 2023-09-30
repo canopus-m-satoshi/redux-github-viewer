@@ -18,11 +18,7 @@ const IssueHeader = () => {
   const dispatch = useDispatch()
 
   const onAdd = () => {
-    dispatch(
-     push(
-       <IssueForm />
-       )
-    )
+    dispatch(push(<IssueForm />))
     dispatch(show())
   }
 

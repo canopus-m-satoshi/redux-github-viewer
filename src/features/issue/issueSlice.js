@@ -54,9 +54,7 @@ export const issueSlice = createSlice({
       })
     },
     update: (state, action) => {
-      const index = state.data.findIndex(
-        (item) => item.id === action.payload.id,
-      )
+      const index = state.data.findIndex((item) => item.id === action.payload.id)
 
       if (index !== -1) {
         const today = format(new Date(), 'MM-dd-yyyy')

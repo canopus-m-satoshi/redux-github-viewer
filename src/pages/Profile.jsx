@@ -1,8 +1,7 @@
 import styled from 'styled-components'
 import Title from '../components/atoms/Title'
 
-const avotorURL =
-  'https://avatars1.githubusercontent.com/u/25723193?s=60&u=5f2d871352830fdf1a79ee285e0712044105ca91&v=4'
+const avotorURL = 'https://avatars1.githubusercontent.com/u/25723193?s=60&u=5f2d871352830fdf1a79ee285e0712044105ca91&v=4'
 
 const StyledContainer = styled.div`
   margin: 32px 0px;

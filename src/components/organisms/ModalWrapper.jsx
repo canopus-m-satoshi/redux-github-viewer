@@ -18,13 +18,12 @@ const StyledModal = styled(Modal)`
   width: 60%;
 `
 
-
 const ModalWrapper = () => {
   const { show, stack } = useSelector((state) => state.ui.modal)
 
   return (
-    <StyledModal isOpen={show} contentLabel="Add Issue Modal" key='global-modal'>
-      {stack[stack.length -1]}
+    <StyledModal isOpen={show} contentLabel="Add Issue Modal" key="global-modal">
+      {stack[stack.length - 1]}
     </StyledModal>
   )
 }

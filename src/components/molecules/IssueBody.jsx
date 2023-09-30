@@ -54,13 +54,7 @@ const IssueBody = () => {
   const data = useSelector((state) => state.issue.data)
 
   const handleModalShow = (data) => {
-    dispatch(
-     push(
-       <IssueForm
-          defaultValue={data}
-        />
-       )
-    )
+    dispatch(push(<IssueForm defaultValue={data} />))
 
     dispatch(show())
   }
@@ -87,9 +81,7 @@ const IssueBody = () => {
                 <input type="checkbox" />
               </StyledTableTd>
               <StyledTableTd className="longCdatal">{data.title}</StyledTableTd>
-              <StyledTableTd>
-                {data.status === 0 ? 'Open' : 'Close'}
-              </StyledTableTd>
+              <StyledTableTd>{data.status === 0 ? 'Open' : 'Close'}</StyledTableTd>
               <StyledTableTd>{data.author}</StyledTableTd>
               <StyledTableTd>{data.createdDate}</StyledTableTd>
               <StyledTableTd>{data.updatedDate}</StyledTableTd>

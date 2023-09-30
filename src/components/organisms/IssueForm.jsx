@@ -71,9 +71,7 @@ const StyledAlertText = styled.p`
   display: ${(props) => (props.$isError ? 'block' : 'none')};
 `
 
-const IssueForm = ({
-  defaultValue
-} = {}) => {
+const IssueForm = ({ defaultValue } = {}) => {
   const { id, title, status, description } = defaultValue || {}
   const dispatch = useDispatch()
 
@@ -143,54 +141,33 @@ const IssueForm = ({
   }
 
   return (
-      <StyledContainer>
-        <Title title="Issueを追加" />
-        <StyledFormContainer>
-          <StyledForm>
-            <StyledFormItem>
-              <label>タイトル</label>
-              <input
-                type="text"
-                defaultValue={title}
-                onChange={onChangeTitle}
-              />
-            </StyledFormItem>
-            <StyledFormItem>
-              <label>説明</label>
-              <textarea
-                placeholder="説明を入力してください"
-                defaultValue={description}
-                onChange={onChangeTextarea}></textarea>
-            </StyledFormItem>
-            <StyledFormItem>
-              <label>ステータス</label>
-              <select
-                defaultValue={status === 0 ? 0 : 1}
-                onChange={onChangeStatus}>
-                <option value={0}>Open</option>
-                <option value={1}>Close</option>
-              </select>
-            </StyledFormItem>
-          </StyledForm>
-        </StyledFormContainer>
-        {defaultValue ? (
-          ''
-        ) : (
-          <StyledAlertText $isError={isError}>{alertText}</StyledAlertText>
-        )}
-        <StyledButtonContainer>
-          {defaultValue ? (
-            <Button text="更新" onClick={handleOnUpdate} />
-          ) : (
-            <Button text="作成" onClick={handleOnCreate} />
-          )}
-          <Button
-            text="閉じる"
-            styleType="transparent"
-            onClick={handleOnClose}
-          />
-        </StyledButtonContainer>
-      </StyledContainer>
+    <StyledContainer>
+      <Title title="Issueを追加" />
+      <StyledFormContainer>
+        <StyledForm>
+          <StyledFormItem>
+            <label>タイトル</label>
+            <input type="text" defaultValue={title} onChange={onChangeTitle} />
+          </StyledFormItem>
+          <StyledFormItem>
+            <label>説明</label>
+            <textarea placeholder="説明を入力してください" defaultValue={description} onChange={onChangeTextarea}></textarea>
+          </StyledFormItem>
+          <StyledFormItem>
+            <label>ステータス</label>
+            <select defaultValue={status === 0 ? 0 : 1} onChange={onChangeStatus}>
+              <option value={0}>Open</option>
+              <option value={1}>Close</option>
+            </select>
+          </StyledFormItem>
+        </StyledForm>
+      </StyledFormContainer>
+      {defaultValue ? '' : <StyledAlertText $isError={isError}>{alertText}</StyledAlertText>}
+      <StyledButtonContainer>
+        {defaultValue ? <Button text="更新" onClick={handleOnUpdate} /> : <Button text="作成" onClick={handleOnCreate} />}
+        <Button text="閉じる" styleType="transparent" onClick={handleOnClose} />
+      </StyledButtonContainer>
+    </StyledContainer>
   )
 }
 
