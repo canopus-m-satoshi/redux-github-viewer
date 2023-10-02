@@ -13,7 +13,7 @@ const StyledHeader = styled.header`
   column-gap: 8px;
 `
 
-const IssueHeader = () => {
+const IssueHeader = ({ onSearchFeilds }) => {
   const dispatch = useDispatch()
 
   const onAdd = () => {
@@ -28,7 +28,7 @@ const IssueHeader = () => {
   return (
     <StyledHeader>
       <HeaderTitle title="Issue" />
-      <Input />
+      <Input onSearchFeilds={onSearchFeilds} />
       <Button text="New" onClick={onAdd} />
       <Button text="Ddelete" onClick={onDelete} styleType="delete" />
     </StyledHeader>

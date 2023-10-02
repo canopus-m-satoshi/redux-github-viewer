@@ -50,7 +50,7 @@ const StyledTableTd = styled.td`
   border-bottom: 1px solid #e1e4e8;
 `
 
-const IssueBody = () => {
+const IssueBody = ({ searchFields }) => {
   const dispatch = useDispatch()
 
   const data = useSelector((state) => state.issue.data)
@@ -89,8 +89,8 @@ const IssueBody = () => {
           </StyledTableTr>
         </thead>
         <tbody>
-          {data.length > 0 ? (
-            data.map((data) => (
+          {searchFields.length > 0 ? (
+            searchFields.map((data) => (
               <StyledTableTr key={data.id} onClick={(e) => handleModalShow(e, data)}>
                 <StyledTableTd>
                   <input type="checkbox" checked={data.isChecked} onChange={() => handleCheckbox(data)} />

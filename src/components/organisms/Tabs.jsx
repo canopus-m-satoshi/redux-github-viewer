@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useSelector } from 'react-redux'
 
 import Tab from '../atoms/Tab'
 import TabPanel from '../atoms/TabPanel'
@@ -11,11 +11,19 @@ import TabPanels from '../molecules/TabPanels'
 
 const Tabs = () => {
   const [SelectedTab, setSelectedTab] = useState(Tab.length)
-  const dispatch = useDispatch()
 
   const handleTabSelect = (index) => {
     setSelectedTab(index)
   }
+
+  const data = useSelector((state) => state.issue.data)
+  const [searchField, setSearchField] = useState('')
+
+  const onSearchFeilds = (e) => {
+    setSearchField(e.target.value)
+  }
+
+  const searchFields = data.filter((el) => el.title.toLowerCase().includes(searchField.toLowerCase()))
 
   return (
     <>
@@ -29,8 +37,8 @@ const Tabs = () => {
       </TabList>
       <TabPanels>
         <TabPanel SelectedTab={SelectedTab === 1}>
-          <IssueHeader />
-          <IssueBody />
+          <IssueHeader onSearchFeilds={onSearchFeilds} />
+          <IssueBody searchFields={searchFields} />
         </TabPanel>
         <TabPanel SelectedTab={SelectedTab === 2}>
           <Title title="PullRequest" centering />

@@ -16,10 +16,10 @@ const StyledInput = styled.input`
   width: 100%;
 `
 
-const Input = () => {
+const Input = ({ onSearchFeilds }) => {
   return (
     <StyledInputContainer>
-      <StyledInput type="input" placeholder="issue名で検索" />
+      <StyledInput type="input" placeholder="issue名で検索" onChange={(e) => onSearchFeilds(e)} />
     </StyledInputContainer>
   )
 }
