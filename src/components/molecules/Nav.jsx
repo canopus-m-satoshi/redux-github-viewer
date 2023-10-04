@@ -11,16 +11,16 @@ const StyledNav = styled.nav`
   right: 0;
   top: 150%;
   box-shadow: rgba(51, 51, 51, 0.15) 1px 1px 4px 1px;
-  display: ${(props) => (props.$isShowMenu ? 'block' : 'none')};
+  display: ${(props) => (props.$isMenuShow ? 'block' : 'none')};
 `
 
-const Nav = ({ isShowMenu }) => {
+const Nav = ({ isMenuShow, handlePageLink }) => {
   return (
-    <StyledNav $isShowMenu={isShowMenu}>
-      <NavItem name="Top" path="/" />
-      <NavItem name="Profile" path="/profile" />
-      <NavItem name="Issue" path="/issue" />
-      <NavItem name="Pull Request" path="/pull-request" />
+    <StyledNav $isMenuShow={isMenuShow}>
+      <NavItem handlePageLink={handlePageLink} name="Top" path="/" />
+      <NavItem handlePageLink={handlePageLink} name="Profile" path="/profile" />
+      <NavItem handlePageLink={handlePageLink} name="Issue" path="/issue" />
+      <NavItem handlePageLink={handlePageLink} name="Pull Request" path="/pull-request" />
     </StyledNav>
   )
 }

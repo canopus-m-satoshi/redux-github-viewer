@@ -2,7 +2,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars } from '@fortawesome/free-solid-svg-icons'
 import { styled } from 'styled-components'
 import Nav from '../molecules/Nav'
-import { useState } from 'react'
 
 const StyledMenu = styled.button`
   background-color: transparent;
@@ -16,17 +15,11 @@ const StyledMenu = styled.button`
   position: relative;
 `
 
-const HamburgerMenu = () => {
-  const [isShowMenu, setIsShowMenu] = useState(false)
-
-  const handleMenu = () => {
-    setIsShowMenu(!isShowMenu)
-  }
-
+const HamburgerMenu = ({ handleMenu, handlePageLink, isMenuShow, menuRef }) => {
   return (
-    <StyledMenu>
+    <StyledMenu ref={menuRef}>
       <FontAwesomeIcon icon={faBars} size="2x" onClick={handleMenu} />
-      <Nav isShowMenu={isShowMenu} />
+      <Nav handlePageLink={handlePageLink} isMenuShow={isMenuShow} />
     </StyledMenu>
   )
 }

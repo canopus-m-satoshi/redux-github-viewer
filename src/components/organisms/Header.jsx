@@ -17,12 +17,12 @@ const StyledHeader = styled.header`
   }
 `
 
-const Header = () => {
+const Header = ({ handleMenu, handlePageLink, isMenuShow, menuRef }) => {
   return (
     <StyledHeader>
       <SiteTitle title="Github Viewer" />
       <Gnav />
-      <HamburgerMenu />
+      <HamburgerMenu handleMenu={handleMenu} handlePageLink={handlePageLink} isMenuShow={isMenuShow} menuRef={menuRef} />
     </StyledHeader>
   )
 }
