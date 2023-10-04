@@ -1,4 +1,6 @@
+import Tabs from '../components/organisms/Tabs'
+
 const Issue = () => {
-  return <div>Issue</div>
+  return <Tabs />
 }
 export default Issue
