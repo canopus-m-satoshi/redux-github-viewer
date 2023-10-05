@@ -43,20 +43,13 @@ function App() {
    * 参考サイト：https://hirakublog.com/react-click-outside/
    * contains() : について→https://developer.mozilla.org/ja/docs/Web/API/Node/contains
    */
-  useEffect(() => {
-    const el = menuRef.current
 
-    const handleOutsideMenu = (e) => {
-      // elにクリックされた要素(e.target)が含まれていなかったらハンバーガーメニューを閉じる
-      el.contains(e.target) || setIsMenuShow(false)
-    }
-
-    document.addEventListener('click', handleOutsideMenu)
-
-    return () => {
-      document.removeEventListener('click', handleOutsideMenu)
-    }
-  }, [menuRef])
+  const el = menuRef.current
+  const handleOutsideMenu = (e) => {
+    // elにクリックされた要素(e.target)が含まれていなかったらハンバーガーメニューを閉じる
+    el.contains(e.target) || setIsMenuShow(false)
+  }
+  document.addEventListener('click', handleOutsideMenu)
 
   return (
     <div className="App">
