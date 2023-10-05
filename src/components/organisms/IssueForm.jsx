@@ -77,7 +77,7 @@ const IssueForm = ({ defaultValue } = {}) => {
 
   const [modalTitle, setModalTitle] = useState('')
   const [modalDescription, setModalDescription] = useState('')
-  const [modalStatus, setModalStatus] = useState('')
+  const [modalStatus, setModalStatus] = useState(0)
   const [isError, setIsError] = useState(false)
   const [alertText, setAlertText] = useState('')
 
@@ -122,7 +122,7 @@ const IssueForm = ({ defaultValue } = {}) => {
       create({
         title: modalTitle,
         description: modalDescription,
-        status: modalStatus,
+        status: 0,
       }),
     )
     dispatch(show())
@@ -153,6 +153,7 @@ const IssueForm = ({ defaultValue } = {}) => {
             <label>説明</label>
             <textarea placeholder="説明を入力してください" defaultValue={description} onChange={onChangeTextarea}></textarea>
           </StyledFormItem>
+          {defaultValue && (
           <StyledFormItem>
             <label>ステータス</label>
             <select defaultValue={status === 0 ? 0 : 1} onChange={onChangeStatus}>
@@ -160,6 +161,7 @@ const IssueForm = ({ defaultValue } = {}) => {
               <option value={1}>Close</option>
             </select>
           </StyledFormItem>
+          )}
         </StyledForm>
       </StyledFormContainer>
       {defaultValue ? '' : <StyledAlertText $isError={isError}>{alertText}</StyledAlertText>}
