@@ -129,6 +129,21 @@ const IssueForm = ({ defaultValue } = {}) => {
   }
 
   const handleOnUpdate = () => {
+    setIsError(true)
+    if (!modalTitle) {
+      setIsError(true)
+      setAlertText('タイトルを入力してください')
+      return
+    }
+
+    if (!modalDescription) {
+      setIsError(true)
+      setAlertText('説明を入力してください')
+      return
+    }
+
+    setIsError(false)
+
     dispatch(
       update({
         id,
@@ -154,17 +169,17 @@ const IssueForm = ({ defaultValue } = {}) => {
             <textarea placeholder="説明を入力してください" defaultValue={description} onChange={onChangeTextarea}></textarea>
           </StyledFormItem>
           {defaultValue && (
-          <StyledFormItem>
-            <label>ステータス</label>
-            <select defaultValue={status === 0 ? 0 : 1} onChange={onChangeStatus}>
-              <option value={0}>Open</option>
-              <option value={1}>Close</option>
-            </select>
-          </StyledFormItem>
+            <StyledFormItem>
+              <label>ステータス</label>
+              <select defaultValue={status === 0 ? 0 : 1} onChange={onChangeStatus}>
+                <option value={0}>Open</option>
+                <option value={1}>Close</option>
+              </select>
+            </StyledFormItem>
           )}
         </StyledForm>
       </StyledFormContainer>
-      {defaultValue ? '' : <StyledAlertText $isError={isError}>{alertText}</StyledAlertText>}
+      {isError ? <StyledAlertText $isError={isError}>{alertText}</StyledAlertText> : ''}
       <StyledButtonContainer>
         {defaultValue ? <Button text="更新" onClick={handleOnUpdate} /> : <Button text="作成" onClick={handleOnCreate} />}
         <Button text="閉じる" styleType="transparent" onClick={handleOnClose} />
