@@ -7,9 +7,7 @@ import Header from './components/organisms/Header'
 import Container from './container/Container'
 import { styled } from 'styled-components'
 import ModalWrapper from './components/organisms/ModalWrapper'
-import { useState } from 'react'
-import { useEffect } from 'react'
-import { useRef } from 'react'
+import { useState, useEffect, useRef } from 'react'
 
 const Wrapper = styled.div`
   *,

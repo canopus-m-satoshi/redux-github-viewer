@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom'
 import { styled } from 'styled-components'
-import Issue from '../../pages/Issue'
 
 const StyledLink = styled(Link)`
   font-size: 1.1rem;
