@@ -48,7 +48,6 @@ function App() {
     const el = menuRef.current
 
     const handleOutsideMenu = (e) => {
-      console.log(e.target)
       // elにクリックされた要素(e.target)が含まれていなかったらハンバーガーメニューを閉じる
       el.contains(e.target) || setIsMenuShow(false)
     }
