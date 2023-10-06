@@ -50,6 +50,8 @@ const StyledTableTd = styled.td`
   border-bottom: 1px solid #e1e4e8;
 `
 
+const Statuses = ['Open', 'Close']
+
 const IssueBody = ({ searchFields }) => {
   const dispatch = useDispatch()
 
@@ -94,7 +96,7 @@ const IssueBody = ({ searchFields }) => {
                   <input type="checkbox" checked={data.isChecked} onClick={(e) => e.stopPropagation()} onChange={() => handleCheckbox(data)} />
                 </StyledTableTd>
                 <StyledTableTd className="longCdatal">{data.title}</StyledTableTd>
-                <StyledTableTd>{data.status === 0 ? 'Open' : 'Close'}</StyledTableTd>
+                <StyledTableTd>{Statuses[data.status]}</StyledTableTd>
                 <StyledTableTd>{data.author}</StyledTableTd>
                 <StyledTableTd>{data.createdDate}</StyledTableTd>
                 <StyledTableTd>{data.updatedDate}</StyledTableTd>
