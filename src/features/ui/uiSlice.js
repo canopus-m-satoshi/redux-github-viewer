@@ -15,8 +15,8 @@ export const uiSlice = createSlice({
       state.modal.toggle = !state.modal.toggle
 
       // modal閉じる時にスタックを空にする
-      if (state.modal.toggle === false) {
-        state.modal.stack = []
+      if (!state.modal.toggle) {
+        state.modal.stack.pop()
       }
     },
     push: (state, action) => {
