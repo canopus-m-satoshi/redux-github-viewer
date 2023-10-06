@@ -55,9 +55,7 @@ const IssueBody = ({ searchFields }) => {
 
   const data = useSelector((state) => state.issue.data)
 
-  const handleModalShow = (e, data) => {
-    if (e.target.nodeName === 'INPUT') return
-
+  const handleModalShow = (data) => {
     dispatch(push(<IssueForm defaultValue={data} />))
 
     dispatch(toggle())
@@ -93,7 +91,7 @@ const IssueBody = ({ searchFields }) => {
             searchFields.map((data) => (
               <StyledTableTr key={data.id} onClick={(e) => handleModalShow(e, data)}>
                 <StyledTableTd>
-                  <input type="checkbox" checked={data.isChecked} onChange={() => handleCheckbox(data)} />
+                  <input type="checkbox" checked={data.isChecked} onClick={(e) => e.stopPropagation()} onChange={() => handleCheckbox(data)} />
                 </StyledTableTd>
                 <StyledTableTd className="longCdatal">{data.title}</StyledTableTd>
                 <StyledTableTd>{data.status === 0 ? 'Open' : 'Close'}</StyledTableTd>
