@@ -2,7 +2,7 @@ import { styled } from 'styled-components'
 
 import { useDispatch, useSelector } from 'react-redux'
 import IssueForm from '../../components/organisms/IssueForm'
-import { show, push } from '../../features/ui/uiSlice'
+import { toggle, push } from '../../features/ui/uiSlice'
 import { checked } from '../../features/issue/issueSlice'
 
 const StyledTableContainer = styled.div`
@@ -60,7 +60,7 @@ const IssueBody = ({ searchFields }) => {
 
     dispatch(push(<IssueForm defaultValue={data} />))
 
-    dispatch(show())
+    dispatch(toggle())
   }
 
   const handleCheckboxAll = (data) => {

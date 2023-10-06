@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import Title from '../atoms/Title'
 import Button from '../atoms/Button'
 
-import { show } from '../../features/ui/uiSlice'
+import { toggle } from '../../features/ui/uiSlice'
 import { update, create } from '../../features/issue/issueSlice'
 import { useEffect, useState } from 'react'
 
@@ -88,7 +88,7 @@ const IssueForm = ({ defaultValue } = {}) => {
   }, [title, description, status])
 
   const handleOnClose = () => {
-    dispatch(show())
+    dispatch(toggle())
   }
 
   const onChangeTitle = (e) => {
@@ -125,7 +125,7 @@ const IssueForm = ({ defaultValue } = {}) => {
         status: 0,
       }),
     )
-    dispatch(show())
+    dispatch(toggle())
   }
 
   const handleOnUpdate = () => {
@@ -152,7 +152,7 @@ const IssueForm = ({ defaultValue } = {}) => {
         status: modalStatus,
       }),
     )
-    dispatch(show())
+    dispatch(toggle())
   }
 
   return (

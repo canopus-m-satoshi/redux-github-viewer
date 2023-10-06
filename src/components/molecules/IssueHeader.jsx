@@ -4,7 +4,7 @@ import HeaderTitle from '../atoms/HeaderTitle'
 import Input from '../atoms/Input'
 import IssueForm from '../organisms/IssueForm'
 import { useDispatch } from 'react-redux'
-import { show, push } from '../../features/ui/uiSlice'
+import { toggle, push } from '../../features/ui/uiSlice'
 import { remove } from '../../features/issue/issueSlice'
 
 const StyledHeader = styled.header`
@@ -18,7 +18,7 @@ const IssueHeader = ({ onSearchFeilds }) => {
 
   const onAdd = () => {
     dispatch(push(<IssueForm />))
-    dispatch(show())
+    dispatch(toggle())
   }
 
   const onDelete = () => {

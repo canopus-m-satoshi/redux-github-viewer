@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
   modal: {
-    show: false,
+    toggle: false,
     stack: [],
   },
 }
@@ -11,11 +11,11 @@ export const uiSlice = createSlice({
   name: 'ui',
   initialState,
   reducers: {
-    show: (state) => {
-      state.modal.show = !state.modal.show
+    toggle: (state) => {
+      state.modal.toggle = !state.modal.toggle
 
       // modal閉じる時にスタックを空にする
-      if (state.modal.show === false) {
+      if (state.modal.toggle === false) {
         state.modal.stack = []
       }
     },
@@ -25,6 +25,6 @@ export const uiSlice = createSlice({
   },
 })
 
-export const { show, push } = uiSlice.actions
+export const { toggle, push } = uiSlice.actions
 
 export default uiSlice.reducer

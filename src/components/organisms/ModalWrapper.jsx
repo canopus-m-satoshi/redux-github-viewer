@@ -1,6 +1,6 @@
 import Modal from 'react-modal'
 import { useDispatch, useSelector } from 'react-redux'
-import { show as handleModal } from '../../features/ui/uiSlice'
+import { toggle as handleModal } from '../../features/ui/uiSlice'
 import styled from 'styled-components'
 
 Modal.setAppElement('#root')
@@ -20,7 +20,7 @@ const StyledModal = styled(Modal)`
 `
 
 const ModalWrapper = () => {
-  const { show, stack } = useSelector((state) => state.ui.modal)
+  const { toggle, stack } = useSelector((state) => state.ui.modal)
   const dispatch = useDispatch()
 
   const handleCloseModal = () => {
@@ -28,7 +28,7 @@ const ModalWrapper = () => {
   }
 
   return (
-    <StyledModal isOpen={show} onRequestClose={handleCloseModal} contentLabel="Add Issue Modal" key="global-modal">
+    <StyledModal isOpen={toggle} onRequestClose={handleCloseModal} contentLabel="Add Issue Modal" key="global-modal">
       {stack[stack.length - 1]}
     </StyledModal>
   )
