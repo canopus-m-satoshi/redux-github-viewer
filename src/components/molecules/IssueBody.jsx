@@ -55,7 +55,7 @@ const IssueBody = ({ searchFields }) => {
 
   const data = useSelector((state) => state.issue.data)
 
-  const handleModalShow = (data) => {
+  const handleModalShow = (e, data) => {
     dispatch(push(<IssueForm defaultValue={data} />))
 
     dispatch(toggle())
