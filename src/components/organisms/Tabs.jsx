@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import { useSelector } from 'react-redux'
 
 import Tab from '../atoms/Tab'
@@ -29,7 +29,7 @@ const Tabs = () => {
     setSearchField(e.target.value)
   }
 
-  const searchFields = data.filter((el) => el.title.toLowerCase().includes(searchField.toLowerCase()))
+  const searchFields = useMemo(() => data.filter((el) => el.title.toLowerCase().includes(searchField.toLowerCase())), [searchField, data])
 
   return (
     <>
