@@ -3,7 +3,6 @@ import { styled } from 'styled-components'
 import { useDispatch, useSelector } from 'react-redux'
 import IssueForm from '../../components/organisms/IssueForm'
 import { toggle, push } from '../../features/ui/uiSlice'
-import { checked } from '../../features/issue/issueSlice'
 
 const StyledTableContainer = styled.div`
   /* overflow: scroll; */
@@ -52,7 +51,7 @@ const StyledTableTd = styled.td`
 
 const Statuses = ['Open', 'Close']
 
-const IssueBody = ({ searchFields }) => {
+const IssueBody = ({ searchFields, handleCheck, setIsChecked, isChecked }) => {
   const dispatch = useDispatch()
 
   const data = useSelector((state) => state.issue.data)
@@ -64,13 +63,11 @@ const IssueBody = ({ searchFields }) => {
   }
 
   const handleCheckboxAll = (data) => {
-    data.forEach((data) => {
-      dispatch(checked(data))
+    const newIsChecked = { ...isChecked }
+    data.forEach((item) => {
+      newIsChecked[item.id] = !newIsChecked[item.id]
     })
-  }
-
-  const handleCheckbox = (data) => {
-    dispatch(checked(data))
+    setIsChecked(newIsChecked)
   }
 
   return (
@@ -93,7 +90,7 @@ const IssueBody = ({ searchFields }) => {
             searchFields.map((data) => (
               <StyledTableTr key={data.id} onClick={(e) => handleModalShow(e, data)}>
                 <StyledTableTd>
-                  <input type="checkbox" checked={data.isChecked} onClick={(e) => e.stopPropagation()} onChange={() => handleCheckbox(data)} />
+                  <input type="checkbox" onClick={(e) => e.stopPropagation()} onChange={() => handleCheck(data.id)} />
                 </StyledTableTd>
                 <StyledTableTd className="longCdatal">{data.title}</StyledTableTd>
                 <StyledTableTd>{Statuses[data.status]}</StyledTableTd>

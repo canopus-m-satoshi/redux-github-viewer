@@ -11,7 +11,6 @@ const data = [
     author: '',
     createdDate: '09-17-2023',
     updatedDate: '09-17-2023',
-    isChecked: false,
   },
   {
     id: 2,
@@ -21,7 +20,6 @@ const data = [
     author: '',
     createdDate: '09-20-2023',
     updatedDate: '09-21-2023',
-    isChecked: false,
   },
   {
     id: 3,
@@ -31,7 +29,6 @@ const data = [
     author: '',
     createdDate: '09-07-2023',
     updatedDate: '09-10-2023',
-    isChecked: false,
   },
 ]
 
@@ -54,7 +51,6 @@ export const issueSlice = createSlice({
         description: action.payload.description,
         createdDate: today,
         updatedDate: today,
-        isChecked: false,
       })
     },
     update: (state, action) => {
@@ -71,21 +67,16 @@ export const issueSlice = createSlice({
           state.data[index].status = Number(action.payload.status)
           state.data[index].description = action.payload.description
           state.data[index].updatedDate = today
-          state.data[index].isChecked = false
         }
       }
     },
-    remove: (state) => {
-      const result = state.data.filter((item) => !item.isChecked)
-      state.data = result
-    },
-    checked: (state, action) => {
-      const index = state.data.findIndex((item) => item.id === action.payload.id)
-      state.data[index].isChecked = !state.data[index].isChecked
+    remove: (state, action) => {
+      const checkedIDs = action.payload.map(Number)
+      state.data = state.data.filter((item) => !checkedIDs.includes(item.id))
     },
   },
 })
 
-export const { create, update, remove, checked } = issueSlice.actions
+export const { create, update, remove } = issueSlice.actions
 
 export default issueSlice.reducer
