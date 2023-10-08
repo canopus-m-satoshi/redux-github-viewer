@@ -3,6 +3,7 @@ import { styled } from 'styled-components'
 import { useDispatch, useSelector } from 'react-redux'
 import IssueForm from '../../components/organisms/IssueForm'
 import { toggle, push } from '../../features/ui/uiSlice'
+import { useState } from 'react'
 
 const StyledTableContainer = styled.div`
   /* overflow: scroll; */
@@ -53,6 +54,7 @@ const Statuses = ['Open', 'Close']
 
 const IssueBody = ({ searchFields, handleCheck, setIsChecked, isChecked }) => {
   const dispatch = useDispatch()
+  const [isCheckedAll, setIsCheckedAll] = useState(false)
 
   const data = useSelector((state) => state.issue.data)
 
@@ -63,10 +65,13 @@ const IssueBody = ({ searchFields, handleCheck, setIsChecked, isChecked }) => {
   }
 
   const handleCheckboxAll = (data) => {
+    setIsCheckedAll(!isCheckedAll)
+
     const newIsChecked = { ...isChecked }
     data.forEach((item) => {
-      newIsChecked[item.id] = !newIsChecked[item.id]
+      newIsChecked[item.id] = !isCheckedAll
     })
+
     setIsChecked(newIsChecked)
   }
 
@@ -76,7 +81,7 @@ const IssueBody = ({ searchFields, handleCheck, setIsChecked, isChecked }) => {
         <thead>
           <StyledTableTr>
             <StyledTableTh>
-              <input type="checkbox" onChange={() => handleCheckboxAll(data)} />
+              <input type="checkbox" onChange={() => handleCheckboxAll(data)} checked={isCheckedAll} />
             </StyledTableTh>
             <StyledTableTh></StyledTableTh>
             <StyledTableTh>ステータス</StyledTableTh>
@@ -90,7 +95,12 @@ const IssueBody = ({ searchFields, handleCheck, setIsChecked, isChecked }) => {
             searchFields.map((data) => (
               <StyledTableTr key={data.id} onClick={(e) => handleModalShow(e, data)}>
                 <StyledTableTd>
-                  <input type="checkbox" onClick={(e) => e.stopPropagation()} onChange={() => handleCheck(data.id)} />
+                  <input
+                    type="checkbox"
+                    onClick={(e) => e.stopPropagation()}
+                    onChange={() => handleCheck(data.id)}
+                    checked={isChecked[data.id] || false}
+                  />
                 </StyledTableTd>
                 <StyledTableTd className="longCdatal">{data.title}</StyledTableTd>
                 <StyledTableTd>{Statuses[data.status]}</StyledTableTd>
