@@ -38,7 +38,6 @@ const HamburgerMenu = () => {
    * 参考サイト：https://hirakublog.com/react-click-outside/
    * contains() : について→https://developer.mozilla.org/ja/docs/Web/API/Node/contains
    */
-  // TODO: 記述位置をHamburger.jsxに変更する
   useEffect(() => {
     const el = menuRef.current
 

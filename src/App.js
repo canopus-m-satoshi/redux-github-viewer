@@ -5,7 +5,6 @@ import Issue from './pages/Issue'
 import PullRequest from './pages/PullRequest'
 import Header from './components/organisms/Header'
 import Container from './container/Container'
-import { styled } from 'styled-components'
 import ModalWrapper from './components/organisms/ModalWrapper'
 
 function App() {
