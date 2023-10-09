@@ -4,7 +4,6 @@ const StyledInputContainer = styled.div`
   width: 100%;
   border-radius: 6px;
   border: 1px solid #e1e4e8;
-  flex: 1 0 85%;
 `
 
 const StyledInput = styled.input`

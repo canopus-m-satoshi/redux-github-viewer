@@ -6,10 +6,8 @@ const StyledTab = styled.li`
   text-align: center;
   list-style-type: none;
   border-radius: 6px 6px 0px 0px;
-  border-top: 1px solid #e1e4e8;
-  border-right: 1px solid #e1e4e8;
-  border-left: 1px solid #e1e4e8;
-  border-bottom: ${(props) => (props.$handleTabClick === '1' ? '1px solid' : 'none')};
+  border: ${(props) => (props.$selectedTab ? '1px solid #e1e4e8' : 'none')};
+  border-bottom: ${(props) => (props.$selectedTab ? 'none' : '1px solid #e1e4e8')};
   // 上記の部分を修正し、選択されたタブにボーダーボトムを追加
 
   span {
@@ -21,9 +19,9 @@ const StyledTab = styled.li`
   }
 `
 
-const Tab = ({ children, handleTabClick, SelectedTab, onClick }) => {
+const Tab = ({ children, selectedTab, onClick, handleTabClick }) => {
   return (
-    <StyledTab onClick={onClick} $handleTabClick={handleTabClick} $SelectedTab={SelectedTab}>
+    <StyledTab onClick={onClick} $handleTabClick={handleTabClick} $selectedTab={selectedTab}>
       <span>{children}</span>
     </StyledTab>
   )

@@ -162,7 +162,7 @@ const IssueForm = ({ defaultValue } = {}) => {
         <StyledForm>
           <StyledFormItem>
             <label>タイトル</label>
-            <input type="text" defaultValue={title} onChange={onChangeTitle} />
+            <input type="text" placeholder="タイトルを入力してください" defaultValue={title} onChange={onChangeTitle} />
           </StyledFormItem>
           <StyledFormItem>
             <label>説明</label>

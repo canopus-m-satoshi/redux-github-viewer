@@ -6,7 +6,7 @@ import { toggle, push } from '../../features/ui/uiSlice'
 import { useState } from 'react'
 
 const StyledTableContainer = styled.div`
-  /* overflow: scroll; */
+  overflow: scroll;
   width: 100%;
 `
 
