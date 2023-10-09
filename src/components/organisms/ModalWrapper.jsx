@@ -21,7 +21,6 @@ const StyledModal = styled(Modal)`
   @media (max-width: 767px) {
     inset: 20px;
     width: 90%;
-    height: fit-content;
   }
 `
 
