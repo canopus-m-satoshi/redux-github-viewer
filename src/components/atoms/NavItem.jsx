@@ -5,7 +5,7 @@ const StyledLink = styled(Link)`
   color: #000;
   text-decoration: none;
   padding: 8px;
-  font-size: 1rem;
+  font-size: max(16px, 1rem);
   font-weight: 400;
   cursor: pointer;
   display: block;

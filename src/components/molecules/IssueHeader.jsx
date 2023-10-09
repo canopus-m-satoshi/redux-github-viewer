@@ -10,7 +10,20 @@ import { remove } from '../../features/issue/issueSlice'
 const StyledHeader = styled.header`
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   column-gap: 8px;
+
+  @media (max-width: 767px) {
+    margin-bottom: 14px;
+    justify-content: space-between;
+
+    > h2 {
+    }
+
+    > button {
+      flex: 0 0 46.5%;
+    }
+  }
 `
 
 const IssueHeader = ({ onSearchFeilds, isChecked }) => {

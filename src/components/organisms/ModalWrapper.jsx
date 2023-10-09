@@ -17,6 +17,12 @@ const StyledModal = styled(Modal)`
 
   margin: auto;
   width: 60%;
+
+  @media (max-width: 767px) {
+    inset: 20px;
+    width: 90%;
+    height: fit-content;
+  }
 `
 
 const ModalWrapper = () => {
