@@ -10,7 +10,6 @@ import { remove } from '../../features/issue/issueSlice'
 const StyledHeader = styled.header`
   display: flex;
   align-items: center;
-  flex-wrap: wrap;
   column-gap: 8px;
 
   @media (max-width: 767px) {
