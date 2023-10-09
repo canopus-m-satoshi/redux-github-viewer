@@ -8,33 +8,19 @@ import Container from './container/Container'
 import { styled } from 'styled-components'
 import ModalWrapper from './components/organisms/ModalWrapper'
 
-const Wrapper = styled.div`
-  *,
-  ::before,
-  ::after {
-    box-sizing: border-box;
-  }
-
-  a {
-    text-decoration: none;
-  }
-`
-
 function App() {
   return (
     <div className="App">
-      <Wrapper>
-        <Header />
-        <Container>
-          <Routes>
-            <Route path="/" element={<Top />} />
-            <Route path="/profile" element={<Profile />} />
-            <Route path="/issue" element={<Issue />} />
-            <Route path="/pull-request" element={<PullRequest />} />
-          </Routes>
-        </Container>
-        <ModalWrapper />
-      </Wrapper>
+      <Header />
+      <Container>
+        <Routes>
+          <Route path="/" element={<Top />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/issue" element={<Issue />} />
+          <Route path="/pull-request" element={<PullRequest />} />
+        </Routes>
+      </Container>
+      <ModalWrapper />
     </div>
   )
 }

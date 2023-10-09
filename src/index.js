@@ -15,6 +15,21 @@ html {
     padding: 0px;
     margin: 0px;
 }
+
+  body {
+    margin: 0;
+    padding: 0;
+  }
+
+    *,
+  ::before,
+  ::after {
+    box-sizing: border-box;
+  }
+
+  a {
+    text-decoration: none;
+  }
 `
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
