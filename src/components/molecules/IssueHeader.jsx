@@ -11,6 +11,19 @@ const StyledHeader = styled.header`
   display: flex;
   align-items: center;
   column-gap: 8px;
+
+  @media (max-width: 767px) {
+    margin-bottom: 14px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    > h2 {
+    }
+
+    > button {
+      flex: 0 0 45.5%;
+    }
+  }
 `
 
 const IssueHeader = ({ onSearchFeilds, isChecked }) => {
